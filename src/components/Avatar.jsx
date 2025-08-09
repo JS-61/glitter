@@ -1,17 +1,23 @@
-import {useContext} from "react";
-import {GlitterContext} from "../utils/context.js";
+import {useDispatch, useSelector} from "react-redux";
+import {changeAvatar, changeName} from "../actions/userAction.js";
 
 const Avatar = ({size}) => {
-    const {user, changeAvatar} = useContext(GlitterContext)
+    const {avatar, name} = useSelector(state => state.user)
+    const dispatch = useDispatch();
     return (
         <img
             onClick={() =>  {
                 const url = prompt('Enter your avatar URL');
-                changeAvatar(url);
+                dispatch(changeAvatar(url));
                 }}
+            onContextMenu={e => {
+                e.preventDefault();
+                const name = prompt('Enter your name');
+                dispatch(changeName(name));
+            }}
             className={`user-avatar ${size ?? ''}`}
-            src={user.avatar}
-            alt={user.name}/>
+            src={avatar}
+            alt={name}/>
     );
 }
 
