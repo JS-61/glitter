@@ -1,5 +1,5 @@
 import {legacy_createStore as createStore} from 'redux';
-import {glitterReducer} from "../reducers/glitterReducer.js";
+import {rootReducer} from "../reducers/rootReducer.js";
 
 
 const initialState = {
@@ -13,4 +13,4 @@ const initialState = {
     }
 }
 
-export const store = createStore(glitterReducer, initialState);
+export const store = createStore(rootReducer, initialState);
